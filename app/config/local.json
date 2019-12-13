@@ -1,0 +1,10 @@
+{
+  "_priority": 100,
+  "db.driver": "mysql",
+  "db.name": "agenda",
+  "db.host": "127.0.0.1",
+  "db.user": "root",
+  "db.pass": "root",
+  "db.charset": "utf8",
+  "db.collation": "utf8_unicode_ci"
+}
