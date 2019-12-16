@@ -12,9 +12,7 @@
         [
             '$scope'
             ,'toastr'
-            ,'$sngApi'
-            ,'$sngFilter'
-            ,'$sngPaging'
+            , 'agenda.agendaService'
             ,Controller
         ]
     );
@@ -24,41 +22,40 @@
      *
      * @param $scope
      * @param toastr
-     * @param $sngApi
-     * @param $sngFilter
-     * @param $sngPaging
+     * @param agendaService
      * @constructor
      */
     function Controller(
          $scope
         ,toastr
-        ,$sngApi
-        ,$sngFilter
-        ,$sngPaging
+        ,agendaService
     ) {
+        /**
+         * Instancia o servico de agenda
+         * @type{StoreFactory}
+         */
+        $scope.servico = agendaService;
+
         /**
          * Referência local ao serviço do filtro.
          *
-         * @todo Alterar a url do template
          * @type {$sngApi}
          */
-        $scope.filtro = $sngFilter('url_template_do_filtro');
+        $scope.filtro = $scope.servico.filter;
 
         /**
          * Referência local ao serviço da paginação.
          *
-         * @todo Alterar a url do template
          * @type {$sngPaging}
          */
-        $scope.paging = $sngPaging();
+        $scope.paging = $scope.servico.paging;
 
         /**
          * Api de comunicação com o controlador no backend.
          *
-         * @todo Alterar o valor do pacote/controlador
          * @type {$sngApi}
          */
-        $scope.api = $sngApi('pacote/controlador', $scope.filtro, $scope.paging);
+        $scope.api = $scope.servico.api;
 
         /**
          * Configuração de ordenação padrão.
@@ -103,7 +100,7 @@
             });
         };
 
-        // $scope.onInit();
+        $scope.onInit();
     }
 
 }());

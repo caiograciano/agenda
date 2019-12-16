@@ -1,5 +1,4 @@
-(function()
-{
+(function () {
     'use strict';
 
     /**
@@ -22,14 +21,27 @@
      *
      * @param {$stateProvider} $stateProvider
      */
-    function configFn(
-        $stateProvider
-    ){
-         $stateProvider.state('app.agenda-list', {
+    function configFn($stateProvider) {
+        $stateProvider.state('app.agenda-list', {
             url: '/agenda/list',
             controller: 'agenda.ListCtrl',
             templateUrl: getView('agenda.list')
         })
+            .state('app.agenda-create', {
+                url: '/agenda/create',
+                controller: 'agenda.CreateCtrl',
+                templateUrl: getView('agenda.form')
+            })
+            .state('app.agenda-edit', {
+                url: '/agenda/edit/:id',
+                controller: 'agenda.EditCtrl',
+                templateUrl: getView('agenda.form')
+            })
+            .state('app.agenda-show', {
+                url: '/agenda/view/:id',
+                controller: 'agenda.ViewCtrl',
+                templateUrl: getView('agenda.form')
+            })
         ;
     }
 

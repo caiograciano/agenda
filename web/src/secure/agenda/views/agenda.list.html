@@ -1,7 +1,7 @@
 <sng-page>
     <sng-header>
         <div class="font-normal h3 col-sm-6 m-t-xs">
-            <i class="fa fa-list"></i> Lista
+            <i class="fa fa-address-book"></i> Agenda
         </div>
         <div class="col-sm-6 pull-right">
             <button type="button" class="btn btn-danger btn-addon pull-right" ui-sref="app.agenda-create" acl="f-agenda-create">
@@ -20,14 +20,25 @@
                         <table md-table>
                             <thead md-head md-order="sort" md-on-reorder="reloadData">
                             <tr md-row>
-                                <th md-column md-order-by="column"><span>Column</span></th>
+                                <th md-column md-order-by="column"><span>Nome</span></th>
+                                <th md-column md-order-by="column"><span>Email</span></th>
+                                <th md-column md-order-by="column"><span>Telefone</span></th>
+                                <th md-column md-order-by="column"><span>Celular</span></th>
                                 <th md-column><span></span></th>
                             </tr>
                             </thead>
                             <tbody md-body>
                             <tr md-row ng-repeat="record in records">
                                 <td md-cell>
-                                    column
+                                    {{record.nome}}
+                                </td>
+                                <td md-cell>
+                                    {{record.email}}
+                                </td><td md-cell>
+                                    {{record.telefone}}
+                                </td>
+                                <td md-cell>
+                                    {{record.celular}}
                                 </td>
                                 <td md-cell class="action">
                                     <md-icon ui-sref="app.agenda-show({id: record.id})">visibility</md-icon>

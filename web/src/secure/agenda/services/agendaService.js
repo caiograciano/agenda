@@ -9,7 +9,9 @@
         'agenda.agendaService',
         [
             '$sngApi',
-            Service
+            '$sngFilter',
+            '$sngPaging',
+            Service,
         ]
     );
 
@@ -17,14 +19,43 @@
      * Função de definição do serviço.
      *
      * @param $sngApi
+     * @param $sngFilter
+     * @param $sngPaging
      * @returns {Service}
      * @constructor
      */
     function Service(
-        $sngApi
+        $sngApi,
+        $sngFilter,
+        $sngPaging
     ) {
-        var me = {
-            // definição da interface do serviço
+        var filter = $sngFilter('src/secure/agenda/views/agenda.filter.html'),
+            paging =  $sngPaging,
+            api = $sngApi('agenda/agenda',filter,paging),
+
+        me = {
+                /**
+                 * Api De Comunicacao com o Controlador de agenda no Backand
+                 * @type {$sngApi}
+                 */
+                api : api ,
+                /**
+                 * Filtro de Resultado para listagem de agenda no backand
+                 * @type{$sngApi}
+                 */
+                filter : filter,
+                /**
+                 * paginador de resultados para listagem de agenda no backand
+                 * @type {$sngApi}
+                 *
+                 */
+                paging : paging,
+                /**
+                 * Campo de ordenacao da lista de agenda
+                 * @type{string}
+                 */
+                sort : null
+
         };
 
         return me;
