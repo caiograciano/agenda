@@ -26,6 +26,7 @@
             ,'md.data.table'
             ,'singular.admin'
             ,'secure.agenda'
+            ,'agendaforeign'
             /*@modules*/
         ]
     )

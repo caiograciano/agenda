@@ -1,10 +1,9 @@
-(function()
-{
-   /**
-    * Serviço de interface.
-    *
-    * @author  <Author>
-    */
+(function () {
+    /**
+     * Serviço de interface.
+     *
+     * @author  <Author>
+     */
     angular.module('secure.agenda').factory(
         'agenda.agendaService',
         [
@@ -29,34 +28,47 @@
         $sngFilter,
         $sngPaging
     ) {
-        var filter = $sngFilter('src/secure/agenda/views/agenda.filter.html'),
-            paging =  $sngPaging,
-            api = $sngApi('agenda/agenda',filter,paging),
 
-        me = {
+
+        /**
+         * O filter espera receber o ng-model do campo do form que você está filtrando e a propriedade é o nome da coluna que ele vai buscar no BD
+         *
+         *
+         */
+
+        var filter = $sngFilter('src/secure/agenda/views/agenda.filter.html', {
+                nome: {
+                    property: 'nome',
+                    operation: '%'
+                }
+            }),
+            paging = $sngPaging,
+            api = $sngApi('agenda/agenda', filter, paging),
+
+            me = {
                 /**
                  * Api De Comunicacao com o Controlador de agenda no Backand
                  * @type {$sngApi}
                  */
-                api : api ,
+                api: api,
                 /**
                  * Filtro de Resultado para listagem de agenda no backand
                  * @type{$sngApi}
                  */
-                filter : filter,
+                filter: filter,
                 /**
                  * paginador de resultados para listagem de agenda no backand
                  * @type {$sngApi}
                  *
                  */
-                paging : paging,
+                paging: paging,
                 /**
                  * Campo de ordenacao da lista de agenda
                  * @type{string}
                  */
-                sort : null
+                sort: null
 
-        };
+            };
 
         return me;
     }

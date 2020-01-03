@@ -7,12 +7,14 @@
      *
      * @author Author <Email>
      */
-    angular.module('secure.agenda').controller(
-        'agenda.ListCtrl',
+    angular.module('secure.agendaforeign').controller(
+        'agendaforeignList',
         [
             '$scope'
             ,'toastr'
-            , 'agenda.agendaService'
+            ,'$sngApi'
+            ,'$sngFilter'
+            ,'$sngPaging'
             ,Controller
         ]
     );
@@ -22,40 +24,41 @@
      *
      * @param $scope
      * @param toastr
-     * @param agendaService
+     * @param $sngApi
+     * @param $sngFilter
+     * @param $sngPaging
      * @constructor
      */
     function Controller(
          $scope
         ,toastr
-        ,agendaService
+        ,$sngApi
+        ,$sngFilter
+        ,$sngPaging
     ) {
-        /**
-         * Instancia o servico de agenda
-         * @type{StoreFactory}
-         */
-        $scope.servico = agendaService;
-
         /**
          * Referência local ao serviço do filtro.
          *
+         * @todo Alterar a url do template
          * @type {$sngApi}
          */
-        $scope.filtro = $scope.servico.filter;
+        $scope.filtro = $sngFilter('url_template_do_filtro');
 
         /**
          * Referência local ao serviço da paginação.
          *
+         * @todo Alterar a url do template
          * @type {$sngPaging}
          */
-        $scope.paging = $scope.servico.paging;
+        $scope.paging = $sngPaging();
 
         /**
          * Api de comunicação com o controlador no backend.
          *
+         * @todo Alterar o valor do pacote/controlador
          * @type {$sngApi}
          */
-        $scope.api = $scope.servico.api;
+        $scope.api = $sngApi('pacote/controlador', $scope.filtro, $scope.paging);
 
         /**
          * Configuração de ordenação padrão.
@@ -75,20 +78,7 @@
          * Inicialização do controlador.
          */
         $scope.onInit = function(){
-
-            //essa função aciona a busca dos dados com o filtro definido
-            $scope.filtro.$on('apply', function (event) {
-                $scope.reloadData();
-            });
-
-            // evento acionado ao clicar no botão "Limpar filtro"
-            $scope.filtro.$on('clear', function(){
-                $scope.reloadData();
-                $scope.filtro.close();
-            });
-
-
-                $scope.reloadData();
+            $scope.reloadData();
         };
 
         /**

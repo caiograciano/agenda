@@ -1,0 +1,46 @@
+<div class="panel-body">
+    <form name="forms.agenda" novalidate autocomplete="off">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group col-sm-12 required">
+                    <label class="control-label label-sm" for="nome">Nome </label>
+                    <input class="form-control" type="text" id="nome" name="nome" ng-model="record.nome" required ng-disabled="viewState == 'show' ">
+                    <ng-messages for="forms.agenda.nome.$error" role="alert" ng-if="isSubmited || forms.agenda.nome.$touched">
+                        <ng-message when="required" class="label label-danger">Nome é obrigatório</ng-message>
+                        <ng-message when="maxlength" class="label label-danger">O tamanho máximo é 150 caracteres</ng-message>
+                    </ng-messages>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-12 required">
+                    <label class="control-label label-sm" for="email">Email </label>
+                    <input class="form-control" type="email" id="email" name="email" ng-model="record.email" required ng-disabled="viewState == 'show' ">
+                    <ng-messages for="forms.agenda.email.$error" role="alert" ng-if="isSubmited || forms.agenda.email.$touched">
+                        <ng-message when="required" class="label label-danger">Email é obrigatório</ng-message>
+                        <ng-message when="maxlength" class="label label-danger">O tamanho máximo é 150 caracteres</ng-message>
+                    </ng-messages>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-12 required">
+                    <label class="control-label label-sm" for="telefone">Telefone </label>
+                    <input class="form-control" type="text" id="telefone" name="telefone" ng-model="record.telefone" required ng-disabled="viewState == 'show' ">
+                    <ng-messages for="forms.agenda.telefone.$error" role="alert" ng-if="isSubmited || forms.agenda.telefone.$touched">
+                        <ng-message when="required" class="label label-danger">Telefone é obrigatório</ng-message>
+                        <ng-message when="maxlength" class="label label-danger">O tamanho máximo é 15 caracteres</ng-message>
+                    </ng-messages>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-12 required" >
+                    <label class="control-label label-sm" for="celular">Celular </label>
+                    <input class="form-control" type="text" id="celular" name="celular" ng-model="record.celular" required ng-disabled="viewState == 'show' ">
+                    <ng-messages for="forms.agenda.celular.$error" role="alert" ng-if="isSubmited || forms.agenda.celular.$touched">
+                        <ng-message when="required" class="label label-danger">Celular é obrigatório</ng-message>
+                        <ng-message when="maxlength" class="label label-danger">O tamanho máximo é 15 caracteres</ng-message>
+                    </ng-messages>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
